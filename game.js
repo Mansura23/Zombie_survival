@@ -12,7 +12,6 @@ const keys = {};
 
 let lastScoreTime = 0;
 
-// INPUT
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
 });
@@ -21,7 +20,6 @@ document.addEventListener("keyup", (e) => {
   keys[e.key.toLowerCase()] = false;
 });
 
-// PLAYER
 function updatePlayer() {
   if (!gameRunning) return;
 
@@ -37,7 +35,6 @@ function updatePlayer() {
   player.style.top = playerY + "px";
 }
 
-// COLLISION
 function collides(a, b) {
   return (
     a.x < b.x + b.width &&
@@ -47,7 +44,6 @@ function collides(a, b) {
   );
 }
 
-// CHECK COLLISION
 function checkCollision() {
   const p = { x: playerX, y: playerY, width: 30, height: 30 };
 
@@ -58,7 +54,6 @@ function checkCollision() {
   }
 }
 
-// GAME OVER
 function gameOver() {
   gameRunning = false;
 
@@ -72,7 +67,6 @@ function gameOver() {
   }
 }
 
-// RESTART
 function restartGame() {
   gameRunning = false;
 
@@ -94,7 +88,6 @@ function restartGame() {
 function updateZombies() {
   for (let z of zombies) {
 
-    // 🕒 direction change (random movement)
     z.changeDirTimer++;
 
     if (z.changeDirTimer > 60) { // ~1 sec
@@ -103,21 +96,17 @@ function updateZombies() {
       z.changeDirTimer = 0;
     }
 
-    // 🎯 small attraction to player (not full chase)
     let dx = playerX - z.x;
     let dy = playerY - z.y;
 
-    // normalize
     let dist = Math.sqrt(dx * dx + dy * dy);
 
     let chaseX = (dx / dist) * 1.3;
     let chaseY = (dy / dist) * 1.3;
 
-    // 🎮 final movement = random + weak chase
     z.x += (z.dirX * z.speed) + chaseX;
     z.y += (z.dirY * z.speed) + chaseY;
 
-    // boundaries
     z.x = Math.max(0, Math.min(570, z.x));
     z.y = Math.max(0, Math.min(370, z.y));
 
@@ -126,7 +115,6 @@ function updateZombies() {
   }
 }
 
-// LOOP
 function gameLoop(timestamp) {
   if (!gameRunning) return;
   updateZombies();
@@ -142,14 +130,12 @@ function gameLoop(timestamp) {
   requestAnimationFrame(gameLoop);
 }
 
-// START
 function startGame() {
   gameRunning = true;
   createZombie();
   requestAnimationFrame(gameLoop);
 }
 
-// EVENTS
 playBtn.addEventListener("click", () => {
   document.getElementById("startScreen").classList.add("hidden");
   startGame();
