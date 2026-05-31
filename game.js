@@ -66,6 +66,8 @@ function gameLoop() {
 
     updatePlayer();
 
+    checkCollision();
+
     requestAnimationFrame(gameLoop);
 }
 
@@ -74,10 +76,38 @@ playBtn.addEventListener("click", () => {
     document
         .getElementById("startScreen")
         .classList.add("hidden");
-
-    createZombie();    
-
+    
+    createZombie();      
     gameRunning = true;
 
     gameLoop();
 });
+
+function checkCollision() {
+    const playerRect = {
+        x: playerX,
+        y: playerY,
+        width: 30,
+        height: 30
+    };
+
+    for (let zombie of zombies) {
+        const zombieRect = {
+            x: zombie.x,
+            y: zombie.y,
+            width: zombie.width,
+            height: zombie.height
+        };
+
+        if (collides(playerRect, zombieRect)) {
+            gameOver();
+        }
+    }
+}
+
+function gameOver() {
+    gameRunning = false;
+
+    document.getElementById("gameOverScreen").classList.remove("hidden");
+    document.getElementById("finalScore").textContent = score;
+}
