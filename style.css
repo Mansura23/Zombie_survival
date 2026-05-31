@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#gameArea {
+  width: 600px;
+  height: 400px;
+  margin: 30px auto;
+  border: 2px solid white;
+  position: relative;
+  background: #333;
+}
+
+#player {
+  width: 30px;
+  height: 30px;
+  background: royalblue;
+  position: absolute;
+  left: 285px;
+  top: 185px;
+  border-radius: 6px;
+}
+
+.zombie {
+  width: 30px;
+  height: 30px;
+  background: crimson;
+  position: absolute;
+  border-radius: 6px;
+}
+
+#hud {
+  width: 600px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#scoreBox,
+#bestBox {
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+#scoreBox {
+  background: green;
+}
+
+#bestBox {
+  background: slateblue;
+}
+
+.screen {
+  margin-top: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
