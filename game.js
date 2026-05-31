@@ -78,18 +78,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-playBtn.addEventListener("click", () => {
-
-    document
-        .getElementById("startScreen")
-        .classList.add("hidden");
-    
-    createZombie();      
-    gameRunning = true;
-
-    gameLoop();
-});
-
 function checkCollision() {
     const playerRect = {
         x: playerX,
@@ -128,3 +116,52 @@ function gameOver() {
     score = 0;
     document.getElementById("score").textContent = score;
 }
+
+function restartGame() {
+
+    // 🧠 game state reset
+    gameRunning = false;
+
+    // 🧹 hide game over screen
+    document.getElementById("gameOverScreen").classList.add("hidden");
+
+    // 🧹 reset player position
+    playerX = 285;
+    playerY = 185;
+    player.style.left = playerX + "px";
+    player.style.top = playerY + "px";
+
+    // 🧹 reset score
+    score = 0;
+    document.getElementById("score").textContent = score;
+
+    // 🧹 reset zombies
+    zombies.forEach(z => z.element.remove());
+    zombies.length = 0;
+
+    // 🧹 reset keys (stop stuck movement bug)
+    for (let key in keys) {
+        keys[key] = false;
+    }
+
+    // 🧹 reset timer (score timing fix)
+    lastScoreTime = 0;
+
+    // ▶ restart game
+    gameRunning = true;
+    requestAnimationFrame(gameLoop);
+}
+
+playBtn.addEventListener("click", () => {
+
+    document
+        .getElementById("startScreen")
+        .classList.add("hidden");
+    
+    createZombie();      
+    gameRunning = true;
+
+    gameLoop();
+});
+
+document.getElementById("restartBtn").addEventListener("click", restartGame);
