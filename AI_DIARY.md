@@ -1,16 +1,89 @@
-📘 AI_DIARY (correct version — balanced)
-2026-05-31 - Full project development: game setup, debugging and feature improvements
+# AI Diary
 
-What I did:
-I designed the main idea of a Zombie Survival game and planned the structure using HTML, CSS, and Vanilla JavaScript. I created the project setup with separate files for game logic, zombies, and scoring system. I implemented the initial game layout including player, enemy area, start screen, and game over screen. I also wrote the basic player movement using keyboard controls (WASD / Arrow keys) and built the main game loop structure using requestAnimationFrame. Later I implemented collision detection, scoring system, restart functionality, and localStorage-based high score system. I also adjusted zombie speed and improved game balance.
+## AI Tools Used
 
-How AI helped me:
-I used AI tools to help structure the project more efficiently and to improve my understanding of game architecture. AI helped me split the project into multiple JavaScript files (zombie.js, score.js, game.js) and suggested better organization of game logic. It also helped me debug an issue where the player movement was not working because the startGame() function was not correctly triggering the game loop. Additionally, AI helped improve zombie behavior by replacing static movement with random movement combined with slight attraction toward the player. It also suggested CSS improvements to make the game look more like a real arcade-style game.
+- ChatGPT
+- Claude
+- Gemini
 
-What problems I faced:
-At first, the game did not work correctly because the game loop was not properly started from the startGame() function. Player movement was not responsive due to missing or incorrectly connected function calls. Zombie behavior was also too simple and made the game unbalanced. Initially zombies either moved too slowly or directly followed the player, making the gameplay either too easy or too predictable. The UI design was also very basic and did not feel like a complete game.
+I used these tools for debugging, understanding JavaScript concepts, improving game structure, and getting suggestions for CSS design.
+
+2026-05-31 - Player movement was not working
+
+What I asked the AI:
+I asked why my player was not moving when pressing the keyboard keys.
+
+What it gave me:
+The AI suggested checking the game loop and keyboard event listeners.
+
+What was wrong:
+The game loop was not being started correctly because an important function was not called.
 
 How I fixed it:
-I fixed the game loop issue by ensuring that startGame() properly initializes requestAnimationFrame(gameLoop). I improved player movement responsiveness by correcting event handling and update logic. I balanced zombie speed by increasing it and later improving AI behavior with random movement and partial player tracking. I also enhanced the CSS design using gradients, glow effects, and animations to create a more immersive arcade-style environment.
+I connected the start game logic correctly and ensured the game loop started with requestAnimationFrame().
 
-Time spent: ~2–3 hours
+Time lost: ~30 minutes
+
+2026-05-31 - Collision detection issue
+
+What I asked the AI:
+I asked how to detect collisions between the player and zombies.
+
+What it gave me:
+The AI suggested using AABB (Axis-Aligned Bounding Box) collision detection.
+
+What was wrong:
+The collision function existed but was not properly integrated into the game loop.
+
+How I fixed it:
+I added collision checks during every frame update and triggered Game Over when a collision occurred.
+
+Time lost: ~20 minutes
+
+2026-05-31 - Zombie speed balancing
+
+What I asked the AI:
+I asked how to make the game more challenging because zombies were too slow.
+
+What it gave me:
+The AI suggested increasing zombie speed values.
+
+What was wrong:
+The player could easily avoid zombies because enemy movement was too slow.
+
+How I fixed it:
+I increased zombie speed multiple times and tested different values until the gameplay felt balanced.
+
+Time lost: ~15 minutes
+
+2026-05-31 - Zombie movement felt predictable
+
+What I asked the AI:
+I asked how to make zombie movement more interesting.
+
+What it gave me:
+The AI suggested adding random movement instead of always directly following the player.
+
+What was wrong:
+Zombies always moved toward the player's exact position, making gameplay repetitive.
+
+How I fixed it:
+I added random movement behavior while still allowing zombies to generally move toward the player.
+
+Time lost: ~20 minutes
+
+2026-05-31 - CSS design improvements
+
+What I asked the AI:
+I asked for suggestions to improve the visual appearance of the game.
+
+What it gave me:
+The AI suggested a darker theme, glow effects, improved HUD styling, and better buttons.
+
+What was wrong:
+The original design looked very basic and did not feel like a complete game.
+
+How I fixed it:
+I redesigned the interface using improved colors, gradients, shadows, and better layout organization.
+
+Time lost: ~25 minutes
