@@ -1,5 +1,6 @@
 const playBtn = document.getElementById("playBtn");
 const player = document.getElementById("player");
+let lastScoreTime = 0;
 
 let gameRunning = false;
 
@@ -68,6 +69,12 @@ function gameLoop() {
 
     checkCollision();
 
+    if (timestamp - lastScoreTime > 1000) {
+        score++;
+        document.getElementById("score").textContent = score;
+        lastScoreTime = timestamp;
+    }
+
     requestAnimationFrame(gameLoop);
 }
 
@@ -110,4 +117,14 @@ function gameOver() {
 
     document.getElementById("gameOverScreen").classList.remove("hidden");
     document.getElementById("finalScore").textContent = score;
+
+    if (score > bestScore) {
+        bestScore = score;
+        localStorage.setItem("bestScore", bestScore);
+        document.getElementById("bestScore").textContent = bestScore;
+    }
+
+
+    score = 0;
+    document.getElementById("score").textContent = score;
 }
