@@ -75,6 +75,8 @@ playBtn.addEventListener("click", () => {
         .getElementById("startScreen")
         .classList.add("hidden");
 
+    createZombie();    
+
     gameRunning = true;
 
     gameLoop();

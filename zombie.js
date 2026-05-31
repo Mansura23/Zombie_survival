@@ -5,10 +5,12 @@ function createZombie() {
 
     zombie.classList.add("zombie");
 
-    zombie.style.left = "0px";
-    zombie.style.top = Math.random() * 370 + "px";
+    zombie.style.left = "50px";
+    zombie.style.top = "50px";
 
-    document.getElementById("gameArea").appendChild(zombie);
+    document
+        .getElementById("gameArea")
+        .appendChild(zombie);
 
     zombies.push(zombie);
 }
