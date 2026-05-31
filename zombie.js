@@ -1,16 +1,27 @@
 const zombies = [];
 
 function createZombie() {
-    const zombie = document.createElement("div");
+  const el = document.createElement("div");
+  el.classList.add("zombie");
 
-    zombie.classList.add("zombie");
+  const z = {
+    element: el,
+    x: Math.random() * 570,
+    y: Math.random() * 370,
+    width: 30,
+    height: 30,
 
-    zombie.style.left = "50px";
-    zombie.style.top = "50px";
+    // 👇 NEW AI VALUES
+    speed: 4,
+    dirX: (Math.random() - 0.5),
+    dirY: (Math.random() - 0.5),
+    changeDirTimer: 0
+  };
 
-    document
-        .getElementById("gameArea")
-        .appendChild(zombie);
+  el.style.left = z.x + "px";
+  el.style.top = z.y + "px";
 
-    zombies.push(zombie);
+  document.getElementById("gameArea").appendChild(el);
+
+  zombies.push(z);
 }
